@@ -1,10 +1,19 @@
 <div class="todo-container">
-  @for (todo of todoData; track todo.id; let f = $first; let l = $last; let odd = $odd; let even = $even;) {
-  <app-todo [todoData]="todo" [first]="f" [last]="l" [even]="even" [odd]="odd"
-    (onClickIcon)="getTodoInfo($event)"></app-todo>
-  }@empty {
-  No hay datos
-  }
+
+  <app-todo #todoRef [todoData]="todoData" (onClickIcon)="getTodoInfo($event)">
+    <app-input #inputRef placeholder="Nombres"></app-input>
+    <app-input #inputRef placeholder="Apellidos"></app-input>
+    <app-input #inputRef placeholder="Edad"></app-input>
+    <div class="comment" style="margin-top: 1rem;">
+      <textarea rows="5"></textarea>
+    </div>
+  </app-todo>
 </div>
 
+<br>
+<br>
+<br>
+
 <button (click)="orderData()">Ordenar</button>
+<button (click)="addTodo()">Agregar</button>
+<button (click)="change()">Modificar</button>
