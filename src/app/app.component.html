@@ -1,10 +1,8 @@
+<button (click)="addTodo()">Agregar ToDo</button>
 <div class="todo-container">
-  @for (todo of todoData; track todo.id; let f = $first; let l = $last; let odd = $odd; let even = $even;) {
-  <app-todo [todoData]="todo" [first]="f" [last]="l" [even]="even" [odd]="odd"
-    (onClickIcon)="getTodoInfo($event)"></app-todo>
-  }@empty {
-  No hay datos
+  @for (todo of todos.data; track $index) {
+  <app-todo [todoData]="todo" (onClickIcon)="deleteTodo($event)">
+    <textarea rows="8" [(ngModel)]="todo.description" (blur)="updateTodo(todo)"></textarea>
+  </app-todo>
   }
 </div>
-
-<button (click)="orderData()">Ordenar</button>

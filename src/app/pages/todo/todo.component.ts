@@ -1,13 +1,15 @@
 import { Component, EventEmitter, Input, LOCALE_ID, Output } from '@angular/core';
 import { NTodo } from '../../models/todo.model';
 import { CommonModule, registerLocaleData } from '@angular/common';
-import es from '@angular/common/locales/es';
-registerLocaleData(es)
+import spanish from '@angular/common/locales/es';
+registerLocaleData(spanish);
 
 @Component({
   selector: 'app-todo',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule
+  ],
   providers: [
     {
       provide: LOCALE_ID, useValue: 'es'
@@ -18,22 +20,24 @@ registerLocaleData(es)
 })
 export class TodoComponent {
   @Input({ required: true }) todoData!: NTodo.TodoData;
-  @Input() first!: boolean;
-  @Input() last!: boolean;
-  @Input() odd!: boolean;
-  @Input() even!: boolean;
+
   @Output() onClickIcon = new EventEmitter<NTodo.TodoData>();
+
 
   get priority(): string {
     switch (this.todoData.priority) {
       case NTodo.Priority.LOW:
+
         return NTodo.PriorityText.LOW;
+
       case NTodo.Priority.MEDIUM:
+
         return NTodo.PriorityText.MEDIUM;
 
       default:
         return NTodo.PriorityText.HIGH;
     }
+
   }
 
   get progress() {
@@ -49,4 +53,5 @@ export class TodoComponent {
 
     return NTodo.RangeText.HIGH;
   }
+
 }
